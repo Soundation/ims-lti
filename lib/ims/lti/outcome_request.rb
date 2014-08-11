@@ -75,9 +75,10 @@ module IMS::LTI
     # POSTs the given score to the Tool Consumer with a replaceResult
     #
     # @return [OutcomeResponse] The response from the Tool Consumer
-    def post_replace_result!(score)
+    def post_replace_result!(score,url=nil)
       @operation = REPLACE_REQUEST
       @score = score
+      @url = url
       post_outcome_request
     end
 
@@ -173,6 +174,11 @@ module IMS::LTI
         node.resultScore do |res_score|
           res_score.language "en" # 'en' represents the format of the number
           res_score.textString @score.to_s
+        end
+      end
+      if @url
+        node.resultData do |res_data|
+          res_data.url @url
         end
       end
     end
