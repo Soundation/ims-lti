@@ -126,8 +126,8 @@ module IMS::LTI
     # Creates a new OutcomeRequest object and stores it in @outcome_requests
     #
     # @return [OutcomeResponse] the response from the Tool Consumer
-    def post_replace_result!(score)
-      new_request.post_replace_result!(score)
+    def post_replace_result!(score,url=nil)
+      new_request.post_replace_result!(score,url)
     end
 
     # POSTs a delete request to the Tool Consumer
